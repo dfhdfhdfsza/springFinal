@@ -1,0 +1,39 @@
+package com.myWeb.www.config;
+
+import javax.sql.DataSource;
+
+import org.apache.catalina.core.ApplicationContext;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.zaxxer.hikari.HikariConfig;
+
+
+@Configuration
+@MapperScan(basePackages = {"com.myWeb.www.repository"})
+@ComponentScan(basePackages = {"com.myWeb.www.service"})
+
+public class RootConfig 
+{
+	//DB 설정부분
+	//전과 달라진 부분 log4jdbc-log4j2 사용
+	//hikariCP 사용
+	
+	@Autowired	//inject랑 똑같은데 내가 설정한 객체가 아닐경우
+	ApplicationContext applicationcontext;
+	
+	public DataSource dataSource()
+	{
+		HikariConfig hikariConfig= new HikariConfig();
+		// log4jdbc-log4j2의 드라이버 클래스 url 사용
+		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mysql://localhost:3306/springtest");
+		hikariConfig.setUsername("springUser");
+		hikariConfig.setPassword("mysql");
+		hikariConfig.setMaximumPoolSize(5); //최대 커넥션 개수
+		hikariConfig.setMinimumIdle(5); //최소 유휴 커넥션 개수
+	}
+
+}
