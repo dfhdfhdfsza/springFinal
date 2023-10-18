@@ -1,0 +1,6 @@
+package com.myWeb.www.service;
+
+public class BoardServiceImpl implements BoardService
+{
+
+}

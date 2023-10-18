@@ -1,0 +1,10 @@
+package com.myWeb.www.service;
+
+import com.myWeb.www.domain.boardVO;
+
+public interface BoardService 
+{
+
+	int register(boardVO bvo);
+
+}

@@ -1,0 +1,32 @@
+package com.myWeb.www.controller;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.myWeb.www.service.BoardService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@RequestMapping("/board/*")
+@Slf4j
+public class BoardController 
+{
+	//폴더명 : board / mapping : board
+	//mapping => /board/register
+	//목적지 => /board/register
+	@Inject
+	private BoardService bsv;
+	
+	@GetMapping("/register")
+	public String getRegister()
+	{
+		return "/board/register";
+	}
+	@PostMapping("/a")
+
+}
