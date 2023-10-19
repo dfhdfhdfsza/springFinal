@@ -3,6 +3,7 @@ package com.myWeb.www.repository;
 import java.util.List;
 
 import com.myWeb.www.domain.boardVO;
+import com.myWeb.www.domain.pagingVO;
 
 public interface BoardDAO 
 {
@@ -18,6 +19,10 @@ public interface BoardDAO
 	int getRemove(int bno);
 
 	void readCountUp(int bno);
+
+	List<boardVO> getPageList(pagingVO pgvo);
+
+	int getTotalCount(pagingVO pgvo);
 
 
 }

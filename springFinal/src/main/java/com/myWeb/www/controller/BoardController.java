@@ -2,16 +2,18 @@ package com.myWeb.www.controller;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import javax.inject.Inject;import org.bouncycastle.math.raw.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myWeb.www.domain.boardVO;
+import com.myWeb.www.domain.pagingVO;
+import com.myWeb.www.handler.PagingHandler;
 import com.myWeb.www.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -45,15 +47,27 @@ public class BoardController
 		return "index";
 	}
 	
+	/*
+	 * @GetMapping("/list") public String getList(Model model) {
+	 * log.info("getList check"); List<boardVO> list = bsv.getList();
+	 * model.addAttribute("list", list); return "/board/list";
+	 * 
+	 * }
+	 */
+	//페이징 추가
 	@GetMapping("/list")
-	public String getList(Model model)
+	public void getList(Model model,pagingVO pgvo)
 	{
-		log.info("getList check");
-		List<boardVO> list = bsv.getList();
-		model.addAttribute("list", list);
-		return "/board/list";
-		
+		log.info("pagingVO>>"+pgvo);
+		model.addAttribute("list",bsv.getPageList(pgvo));
+		//페이징 처리
+		//총 페이지 갯수 totalCount 검색포함
+		int totalCount =bsv.getTotalCount(pgvo);
+		PagingHandler ph=new PagingHandler(pgvo, totalCount);
+		model.addAttribute("ph", ph);
+		log.info("ph:"+ph);
 	}
+	
 	@GetMapping("/detail")
 	public String getDetail(Model model,@RequestParam("bno")int bno)
 	{

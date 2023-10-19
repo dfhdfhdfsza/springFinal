@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.myWeb.www.domain.boardVO;
+import com.myWeb.www.domain.pagingVO;
 import com.myWeb.www.repository.BoardDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +53,17 @@ public class BoardServiceImpl implements BoardService
 	public void readCountUp(int bno) {
 		bdao.readCountUp(bno);
 		
+	}
+
+	@Override
+	public List<boardVO> getPageList(pagingVO pgvo) {
+		
+		return bdao.getPageList(pgvo);
+	}
+
+	@Override
+	public int getTotalCount(pagingVO pgvo) {
+		return bdao.getTotalCount(pgvo);
 	}
 
 

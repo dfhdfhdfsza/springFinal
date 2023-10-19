@@ -1,0 +1,22 @@
+package com.myWeb.www.handler;
+
+import com.myWeb.www.domain.pagingVO;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+
+public class PagingHandler 
+{
+	
+	private int startPage;	//화면에 보여지는 시작 페이지네이션 번호
+	private int endPage;	//화면에 보여지는 끝 페이지네이션 번호
+	private int realEndPage;
+	private boolean prev,next;
+	private pagingVO pgvo;
+
+}

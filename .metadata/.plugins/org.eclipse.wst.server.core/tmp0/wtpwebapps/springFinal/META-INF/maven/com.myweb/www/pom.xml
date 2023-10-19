@@ -63,6 +63,13 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>${org.slf4j-version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>jcl-over-slf4j</artifactId>
+    <version>${org.slf4j-version}</version>
+</dependency>
+		
 		
 		<!-- logback-classic -->
 		<dependency>
@@ -124,7 +131,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
+			<version>1.18.20</version>
 			<scope>provided</scope>
 		</dependency>
 
