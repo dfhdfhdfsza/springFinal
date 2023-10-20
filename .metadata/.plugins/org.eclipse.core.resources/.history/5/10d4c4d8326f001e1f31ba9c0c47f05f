@@ -1,0 +1,21 @@
+package com.myWeb.www.service;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.myWeb.www.domain.commentVO;
+import com.myWeb.www.repository.CommentDAO;
+
+@Service
+public class CommentServiceImpl implements CommentService
+{
+	@Inject
+	private CommentDAO cdao;
+
+	@Override
+	public int postComment(commentVO cvo) {
+		return cdao.postComment(cvo);
+	}
+
+}

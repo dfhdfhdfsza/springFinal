@@ -13,7 +13,7 @@
 	.css{
 	background-image:url("/resources/img/5930863e97f731536cdc440539eed2d3073c874a.jpg");
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	font-family: "Orbit-Regular";
 	}
 	@font-face {

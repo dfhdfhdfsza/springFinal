@@ -33,6 +33,6 @@
 		</div>
 		<button type="submit" class="btn btn-dark">등록</button>
 	</form>
-	<jsp:include page="../common/footer.jsp"></jsp:include>
+	
 </body>
 </html>

@@ -1,0 +1,33 @@
+package com.myWeb.www.controller;
+
+import javax.inject.Inject;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.myWeb.www.domain.commentVO;
+import com.myWeb.www.service.CommentService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@RequestMapping("/comment/*")
+@Slf4j
+public class CommentController 
+{
+	@Inject
+	private CommentService csv;
+	
+	private int isOk;
+
+	
+	@PostMapping(value="/post",consumes = "application/json")
+	public ResponseEntity<String> postComment(@RequestBody commentVO cvo)
+	{
+		isOk=csv.postComment(cvo);
+	}
+
+}

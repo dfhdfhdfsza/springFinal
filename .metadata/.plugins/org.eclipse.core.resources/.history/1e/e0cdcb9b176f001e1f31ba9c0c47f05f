@@ -1,0 +1,15 @@
+package com.myWeb.www.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@RequestMapping("/comment/*")
+@Slf4j
+public class CommentController 
+{
+	private CommentService csv;
+
+}

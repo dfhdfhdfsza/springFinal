@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#tb {
+	background-color: #000; /* 까만색(0,0,0) */
+	opacity: 0.7; /* 80% 불투명도 */
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
@@ -54,5 +61,63 @@
 		<button type="button">삭제</button>
 	</a>
 	<br>
+	<br>
+	<!-- comment 라인 -->
+	<div>
+		<!-- 댓글 등록 라인 -->
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="cmtWriter">Writer</span> <input
+				type="text" class="form-control" placeholder="Comment Content"
+				id="cmtText">
+			<button class="btn btn-primary" type="button" id="cmtPostBtn">POST</button>
+		</div>
+		<!-- 댓글 표시 라인 -->
+		<table class="table table-bordered" id="tb" style="text-align: center">
+			<thead>
+				<tr>
+					<th scope="col" style="width: 5%">CNO</th>
+					<th scope="col" style="width: 10%">Writer</th>
+					<th scope="col">content</th>
+					<th scope="col" style="width: 10%">ModAt</th>
+					<th scope="col" style="width: 5%">Mod</th>
+					<th scope="col" style="width: 5%">Del</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider" id="cmtArea">
+
+			</tbody>
+		</table>
+	</div>
+	<!-- 모달 창 -->
+	<div class="modal" id="myModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Writer</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Comment Content" id="cmtTextMod">
+						<button class="btn btn-primary" type="button" id="cmtModBtn">POST</button>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		let bnoVal = `<c:out value="${bvo.bno}"/>`;
+		console.log(bnoVal);
+	</script>
+	<script type="text/javascript" src="/resources/boardComment.js"></script>
+
+	<script type="text/javascript">
+		getCommentList(bnoVal);
+	</script>
 </body>
 </html>
