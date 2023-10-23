@@ -84,10 +84,16 @@
 				</tr>
 			</thead>
 			<tbody class="table-group-divider" id="cmtArea">
-
 			</tbody>
 		</table>
 	</div>
+	<!-- 댓글 페이징 라인 -->
+	<div>
+		<div>
+			<button type="button" id="moreBtn" data-page="1" class="btn btn-primary" style="visibility: hidden">MORE+</button>
+		</div>
+	</div>
+	
 	<!-- 모달 창 -->
 	<div class="modal" id="myModal" tabindex="-1">
 		<div class="modal-dialog">

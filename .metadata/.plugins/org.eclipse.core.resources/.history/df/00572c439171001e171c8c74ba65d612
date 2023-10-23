@@ -1,0 +1,29 @@
+package com.myWeb.www.repository;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.myWeb.www.domain.commentVO;
+import com.myWeb.www.domain.pagingVO;
+import com.myWeb.www.handler.PagingHandler;
+
+public interface CommentDAO {
+
+	int postComment(commentVO cvo);
+
+	List<commentVO> getList(int bno);
+
+	int removeComment(int cno);
+
+	int modifyComment(commentVO cvo);
+
+	PagingHandler getList(int bno, pagingVO pgvo);
+
+	int selectOneBnoTotalCount(int bno);
+
+	List<commentVO> selectListPaging(@Param("bno")long bno,@Param("pgvo") pagingVO pgvo);
+
+	
+
+}

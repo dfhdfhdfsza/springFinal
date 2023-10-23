@@ -1,0 +1,20 @@
+package com.myWeb.www.service;
+
+import java.util.List;
+
+import com.myWeb.www.domain.commentVO;
+import com.myWeb.www.domain.pagingVO;
+
+public interface CommentService {
+
+	int postComment(commentVO cvo);
+
+	List<commentVO> getList(int bno);
+
+	int removeComment(int cno);
+
+	int modifyComment(commentVO cvo);
+
+	List<commentVO> getPList(int bno, pagingVO cpgvo);
+
+}

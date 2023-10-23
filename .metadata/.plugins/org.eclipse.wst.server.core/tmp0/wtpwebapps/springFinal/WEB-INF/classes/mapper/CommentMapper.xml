@@ -7,11 +7,23 @@
 	insert into comment (bno,writer,content)
 	values (#{bno},#{writer},#{content})
 </insert>
-<select id="getList" resultType="com.myWeb.www.domain.commentVO">
-	select * from comment where bno=#{bno}
-</select>
+<!-- <select id="getList" resultType="com.myWeb.www.domain.commentVO">
+	select * from comment where bno=#{bno} order by cno desc
+</select> -->
 <delete id="removeComment">
 	delete from comment where cno=#{cno}
 </delete>
+<update id="modifyComment" parameterType="com.myWeb.www.domain.commentVO">
+	update comment set content=#{content},mod_at=now() where cno=#{cno}
+</update>
+<select id="selectOneBnoTotalCount" resultType="int">
+	select count(cno) from comment where bno=#{bno}
+</select>
+<select id="selectListPaging" resultType="com.myWeb.www.domain.commentVO">
+	select * from comment where bno=#{bno} 
+	order by cno desc
+	limit #{pgvo.pageStart},#{pgvo.qty}
+</select>
+
 
 </mapper>
