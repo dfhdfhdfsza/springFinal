@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +55,16 @@
 			<td>${bvo.hasFile }</td>
 		</tr>
 	</table>
+	<ul>
+		<c:forEach items="${flist}" var="fvo">
+			<li>
+				<img src="/upload/${fn:replace(fvo.saveDir,'\\','/')}/${fvo.uuid}${fvo.fileName}">
+
+			</li>
+		</c:forEach>
+	</ul>
+
+
 	<a href="/board/modify?bno=${bvo.bno}">
 		<button type="button">수정</button>
 	</a>
@@ -90,10 +101,11 @@
 	<!-- 댓글 페이징 라인 -->
 	<div>
 		<div>
-			<button type="button" id="moreBtn" data-page="1" class="btn btn-primary" style="visibility: hidden">MORE+</button>
+			<button type="button" id="moreBtn" data-page="1"
+				class="btn btn-primary" style="visibility: hidden">MORE+</button>
 		</div>
 	</div>
-	
+
 	<!-- 모달 창 -->
 	<div class="modal" id="myModal" tabindex="-1">
 		<div class="modal-dialog">
@@ -105,17 +117,19 @@
 				</div>
 				<div class="modal-body">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Comment Content" id="cmtTextMod">
+						<input type="text" class="form-control"
+							placeholder="Comment Content" id="cmtTextMod">
 						<button class="btn btn-primary" type="button" id="cmtModBtn">POST</button>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
 		let bnoVal = `<c:out value="${bvo.bno}"/>`;
 		console.log(bnoVal);

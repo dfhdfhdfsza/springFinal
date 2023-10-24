@@ -1,18 +1,22 @@
 package com.myWeb.www.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;import org.bouncycastle.math.raw.Mod;
+import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import com.myWeb.www.domain.boardVO;
+import com.myWeb.www.domain.fileVO;
 import com.myWeb.www.domain.pagingVO;
+import com.myWeb.www.handler.FileHandler;
 import com.myWeb.www.handler.PagingHandler;
 import com.myWeb.www.service.BoardService;
 
@@ -30,6 +34,9 @@ public class BoardController
 	@Inject
 	private BoardService bsv;
 	
+	@Inject
+	private FileHandler fh;
+	
 	private int isOk;
 	
 	@GetMapping("/register")
@@ -39,10 +46,21 @@ public class BoardController
 	}
 	
 	@PostMapping("/register")
-	public String postRegister(boardVO bvo)
+	public String postRegister(boardVO bvo,@RequestParam(name="files",required = false)MultipartFile[] files)
 	{
-		log.info("bvo:"+bvo);
-		isOk=bsv.register(bvo);
+		log.info("bvo:"+bvo+" file:"+files);
+		List<fileVO>flist=new ArrayList<fileVO>();
+		//file upload handler 생성
+		if(files[0].getSize()>0)
+		{
+			flist=fh.uploadFiles(files);
+		}
+		
+			
+//			isOk=bsv.register(bvo);
+		isOk=bsv.insert(new BoardDTO(bvo,flist));
+		
+		
 		
 		return "index";
 	}
@@ -74,6 +92,8 @@ public class BoardController
 		log.info("getDetail check");
 		bsv.readCountUp(bno);
 		boardVO bvo=bsv.getDetail(bno);
+		List<fileVO> flist=bsv.getFlist(bno);
+		model.addAttribute("flist", flist);
 		model.addAttribute("bvo", bvo);
 		return "/board/detail";
 	}

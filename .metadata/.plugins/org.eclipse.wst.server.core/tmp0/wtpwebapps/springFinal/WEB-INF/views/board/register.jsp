@@ -10,7 +10,7 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../common/nav.jsp"></jsp:include>
 	
-	<form action="/board/register" method="post">
+	<form action="/board/register" method="post" enctype="multipart/form-data">
 		<div class="mb-3">
 			<label for="exampleFormControlInput1" class="form-label">Title</label> <input
 				type="text" class="form-control" id="exampleFormControlInput1"
@@ -28,9 +28,19 @@
 			<textarea class="form-control" id="exampleFormControlTextarea1"
 				rows="3" name="content"></textarea>
 		</div>
-		<button type="submit" class="btn btn-dark">등록</button>
+		<div class="mb-3">
+			<label for="exampleFormControlInput1" class="form-label">File</label>
+			<input type="file" class="form-control" id="files" name="files" style="display: none;" multiple="multiple">
+			<!-- input button tirgger 용도의 button -->
+			<button type="button" id=trigger class="btn btn-primary">FileUpload</button>
+		</div>
+		<!-- 첨부파일 표시될 영역 -->
+		<div class="mb-3" id="fileZone">
+			
+		</div>
+		<button type="submit" class="btn btn-dark" id="regBtn">등록</button>
 	</form>
-
+	<script type="text/javascript" src="/resources/boardRegister.js"></script>
 
 </body>
 </html>

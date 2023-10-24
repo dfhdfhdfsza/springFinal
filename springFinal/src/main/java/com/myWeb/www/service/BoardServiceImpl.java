@@ -6,18 +6,24 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.myWeb.www.controller.BoardDTO;
 import com.myWeb.www.domain.boardVO;
+import com.myWeb.www.domain.fileVO;
 import com.myWeb.www.domain.pagingVO;
 import com.myWeb.www.repository.BoardDAO;
+import com.myWeb.www.repository.FileDAO;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
+
 public class BoardServiceImpl implements BoardService
 {
 	@Inject
 	private BoardDAO bdao;
+	
+	@Inject
+	private FileDAO fdao;
 
 	@Override
 	public int register(boardVO bvo) {
@@ -64,6 +70,33 @@ public class BoardServiceImpl implements BoardService
 	@Override
 	public int getTotalCount(pagingVO pgvo) {
 		return bdao.getTotalCount(pgvo);
+	}
+
+	@Override
+	public int insert(BoardDTO boardDTO) 
+	{
+		//bvo,flist 가져와서 각자 db에 저장
+		//기존 메서드 활용
+		int isOk=bdao.register(boardDTO.getBvo());// bno 등록
+		
+		//bvo insert 후, 파일도 있다면
+		if(isOk>0 && boardDTO.getFlist().size()>0)
+		{
+			long bno= bdao.selectOneBno();//가장 마지막에 등록된 bno
+			//모든파일에 bno 세팅
+			for(fileVO fvo:boardDTO.getFlist())
+			{
+				fvo.setBno(bno);
+				isOk*=fdao.insertFile(fvo);
+			}
+		}
+		return isOk;
+	}
+
+	@Override
+	public List<fileVO> getFlist(int bno) {
+		
+		return fdao.getFlist(bno);
 	}
 
 

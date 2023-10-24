@@ -2,7 +2,9 @@ package com.myWeb.www.service;
 
 import java.util.List;
 
+import com.myWeb.www.controller.BoardDTO;
 import com.myWeb.www.domain.boardVO;
+import com.myWeb.www.domain.fileVO;
 import com.myWeb.www.domain.pagingVO;
 
 public interface BoardService 
@@ -23,6 +25,10 @@ public interface BoardService
 	List<boardVO> getPageList(pagingVO pgvo);
 
 	int getTotalCount(pagingVO pgvo);
+
+	int insert(BoardDTO boardDTO);
+
+	List<fileVO> getFlist(int bno);
 
 
 }

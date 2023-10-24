@@ -2,6 +2,7 @@ package com.myWeb.www.repository;
 
 import java.util.List;
 
+import com.myWeb.www.controller.BoardDTO;
 import com.myWeb.www.domain.boardVO;
 import com.myWeb.www.domain.pagingVO;
 
@@ -23,6 +24,10 @@ public interface BoardDAO
 	List<boardVO> getPageList(pagingVO pgvo);
 
 	int getTotalCount(pagingVO pgvo);
+
+	int insert(BoardDTO boardDTO);
+
+	long selectOneBno();
 
 
 }

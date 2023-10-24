@@ -1,0 +1,10 @@
+package com.myWeb.www.handler;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class FileHandler 
+{
+	private final String UP_DIR="D:\\_myweb\\_java\\fileUpload";
+
+}
