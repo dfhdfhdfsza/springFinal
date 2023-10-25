@@ -10,5 +10,9 @@
 <select id="getFlist" resultType="com.myWeb.www.domain.fileVO">
 	select * from file where bno=#{bno}
 </select>
+<delete id="fileRemove">
+	delete from file where uuid=#{uuid}
+</delete>
+
 
 </mapper>

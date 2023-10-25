@@ -2,6 +2,8 @@ package com.myWeb.www.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.myWeb.www.controller.BoardDTO;
 import com.myWeb.www.domain.boardVO;
 import com.myWeb.www.domain.fileVO;
@@ -16,7 +18,7 @@ public interface BoardService
 
 	boardVO getDetail(int bno);
 
-	int postModify(boardVO bvo);
+	int postModify(BoardDTO bdto);
 
 	int getRemove(int bno);
 
@@ -29,6 +31,10 @@ public interface BoardService
 	int insert(BoardDTO boardDTO);
 
 	List<fileVO> getFlist(int bno);
+
+	int fileRemove(String uuid);
+
+	
 
 
 }

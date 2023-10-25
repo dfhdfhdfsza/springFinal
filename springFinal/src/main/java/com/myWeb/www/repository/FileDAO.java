@@ -2,6 +2,7 @@ package com.myWeb.www.repository;
 
 import java.util.List;
 
+
 import com.myWeb.www.domain.fileVO;
 
 public interface FileDAO {
@@ -9,5 +10,9 @@ public interface FileDAO {
 	int insertFile(fileVO fvo);
 
 	List<fileVO> getFlist(int bno);
+
+	int fileRemove(String uuid);
+
+	
 
 }

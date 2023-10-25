@@ -55,20 +55,21 @@
 			<td>${bvo.hasFile }</td>
 		</tr>
 	</table>
+	
 	<ul>
-		<c:forEach items="${flist}" var="fvo">
-			<li>
-				<img src="/upload/${fn:replace(fvo.saveDir,'\\','/')}/${fvo.uuid}${fvo.fileName}">
-
-			</li>
+		<c:forEach items="${bdto.flist}" var="fvo">
+				<li>
+					<img src="/upload/${fn:replace(fvo.saveDir,'\\','/')}/${fvo.uuid}_th_${fvo.fileName}">
+					<span class="badge bg-secondary rounded-pill">${fvo.fileSize}Byte</span>
+				</li>
 		</c:forEach>
 	</ul>
 
 
-	<a href="/board/modify?bno=${bvo.bno}">
+	<a href="/board/modify?bno=${bdto.bvo.bno}">
 		<button type="button">수정</button>
 	</a>
-	<a href="/board/remove?bno=${bvo.bno}">
+	<a href="/board/remove?bno=${bdto.bvo.bno}">
 		<button type="button">삭제</button>
 	</a>
 	<br>

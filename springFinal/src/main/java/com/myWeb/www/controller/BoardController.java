@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -91,10 +96,8 @@ public class BoardController
 	{
 		log.info("getDetail check");
 		bsv.readCountUp(bno);
-		boardVO bvo=bsv.getDetail(bno);
-		List<fileVO> flist=bsv.getFlist(bno);
-		model.addAttribute("flist", flist);
-		model.addAttribute("bvo", bvo);
+		BoardDTO bdto= new BoardDTO(bsv.getDetail(bno), bsv.getFlist(bno));
+		model.addAttribute("bdto", bdto);
 		return "/board/detail";
 	}
 	
@@ -103,16 +106,34 @@ public class BoardController
 	{
 		log.info("getModify check");
 		boardVO bvo=bsv.getDetail(bno);
+		List<fileVO> flist=bsv.getFlist(bno);
 		log.info("bvo:"+bvo);
+		model.addAttribute("flist", flist);
 		model.addAttribute("bvo", bvo);
 		return "/board/modify";
 	}
+	@DeleteMapping(value = "/{uuid}")
+	public ResponseEntity<String> fileRemove(@PathVariable("uuid")String uuid)
+	{
+		log.info("fileRemove check");
+		isOk=bsv.fileRemove(uuid);
+		return isOk>0 ? new ResponseEntity<String>("1",HttpStatus.OK):new ResponseEntity<String>("0",HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
 	@PostMapping("/modify")
-	public String postModify(boardVO bvo)
+	public String postModify(boardVO bvo,@RequestParam(name="files",required = false)MultipartFile[] files)
 	{
 		log.info("postModify check");
-		isOk=bsv.postModify(bvo);
+		List<fileVO>flist=new ArrayList<fileVO>();
+		
+		if(files[0].getSize()>0)
+		{
+			flist=fh.uploadFiles(files);
+		}
+		log.info("모디파이 list"+flist);
+		BoardDTO bdto=new BoardDTO(bvo, flist);
+		isOk=bsv.postModify(bdto);
+
 		return "redirect:/board/list";
 	}
 	@GetMapping("/remove")

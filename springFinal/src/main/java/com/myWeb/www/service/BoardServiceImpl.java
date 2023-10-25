@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.myWeb.www.controller.BoardDTO;
 import com.myWeb.www.domain.boardVO;
@@ -16,7 +17,7 @@ import com.myWeb.www.repository.FileDAO;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-
+@Slf4j
 public class BoardServiceImpl implements BoardService
 {
 	@Inject
@@ -44,9 +45,22 @@ public class BoardServiceImpl implements BoardService
 	}
 
 	@Override
-	public int postModify(boardVO bvo) {
+	public int postModify(BoardDTO bdto) {
 		
-		return bdao.postModify(bvo);
+		int isOk=bdao.postModify(bdto.getBvo());
+		if(isOk>0 && bdto.getFlist().size()>0)
+		{
+			long bno=bdto.getBvo().getBno();
+			for(fileVO fvo:bdto.getFlist())
+			{
+				fvo.setBno(bno);
+				log.info("모디파이 서비스에서 fvo 출력:"+fvo);
+				isOk*=fdao.insertFile(fvo);
+			}
+			
+		}
+		
+		return isOk;
 	}
 
 	@Override
@@ -98,6 +112,14 @@ public class BoardServiceImpl implements BoardService
 		
 		return fdao.getFlist(bno);
 	}
+
+	@Override
+	public int fileRemove(String uuid) {
+		
+		return fdao.fileRemove(uuid);
+	}
+
+	
 
 
 }
