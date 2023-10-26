@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myWeb.www.controller.BoardDTO;
@@ -12,6 +13,7 @@ import com.myWeb.www.domain.boardVO;
 import com.myWeb.www.domain.fileVO;
 import com.myWeb.www.domain.pagingVO;
 import com.myWeb.www.repository.BoardDAO;
+import com.myWeb.www.repository.CommentDAO;
 import com.myWeb.www.repository.FileDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,9 @@ public class BoardServiceImpl implements BoardService
 	
 	@Inject
 	private FileDAO fdao;
+	
+	@Inject
+	private CommentDAO cdao;
 
 	@Override
 	public int register(boardVO bvo) {
@@ -44,6 +49,7 @@ public class BoardServiceImpl implements BoardService
 		return bdao.getDetail(bno);
 	}
 
+	@Transactional
 	@Override
 	public int postModify(BoardDTO bdto) {
 		
@@ -63,10 +69,13 @@ public class BoardServiceImpl implements BoardService
 		return isOk;
 	}
 
+	@Transactional
 	@Override
 	public int getRemove(int bno) {
-		
-		return bdao.getRemove(bno);
+		int isOk=bdao.getRemove(bno);
+		isOk*=cdao.removeAllComment(bno);
+		isOk*=fdao.removeAllFile(bno);
+		return isOk;
 	}
 
 	@Override
@@ -86,6 +95,7 @@ public class BoardServiceImpl implements BoardService
 		return bdao.getTotalCount(pgvo);
 	}
 
+	@Transactional
 	@Override
 	public int insert(BoardDTO boardDTO) 
 	{

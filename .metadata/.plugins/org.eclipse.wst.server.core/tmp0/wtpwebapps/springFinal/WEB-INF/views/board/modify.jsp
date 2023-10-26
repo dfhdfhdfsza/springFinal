@@ -34,10 +34,10 @@
 				rows="3" name="content"></textarea>
 		</div>
 		<c:forEach items="${flist}" var="fvo">
-				<li>
+				<li data-uuid="${fvo.uuid}">
 					<img src="/upload/${fn:replace(fvo.saveDir,'\\','/')}/${fvo.uuid}_th_${fvo.fileName}">
 					<span class="badge bg-secondary rounded-pill">${fvo.fileSize}Byte</span>
-					<button type="button" id="fileMod" data-uuid="${fvo.uuid}">X</button>
+					<button type="button" class	="fileMod" >X</button>
 				</li>
 		</c:forEach>
 		<div class="mb-3">
@@ -51,7 +51,7 @@
 		</div>
 		<button type="submit" class="btn btn-dark" id="regBtn">등록</button>
 	</form>
-	<script type="text/javascript" src="/resources/boardModify.js"></script>
+	<script type="text/javascript" src="/resources/boardModify.js?ver='1'"></script>
 	
 </body>
 </html>

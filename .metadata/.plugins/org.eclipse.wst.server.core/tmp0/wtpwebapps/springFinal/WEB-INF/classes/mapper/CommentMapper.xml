@@ -24,6 +24,9 @@
 	order by cno desc
 	limit #{pgvo.pageStart},#{pgvo.qty}
 </select>
+<delete id="removeAllComment">
+	delete from comment where bno=#{bno}
+</delete>
 
 
 </mapper>

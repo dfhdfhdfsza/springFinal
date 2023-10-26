@@ -25,6 +25,8 @@ public interface CommentDAO {
 	//매개변수를 두개이상 보낼때는 반드시 @param을 써줘야된다
 	List<commentVO> selectListPaging(@Param("bno")long bno,@Param("pgvo") pagingVO pgvo);
 
+	int removeAllComment(int bno);
+
 	
 
 }

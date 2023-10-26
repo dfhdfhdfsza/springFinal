@@ -53,8 +53,7 @@ document.addEventListener('change',(e)=>{
         ul+=`</ul>`;
         div.innerHTML=ul;
 
-        if(isOk==0){
-            document.getElementById('regBtn').diabled=true;
-        }
+        
+        
     }
 })

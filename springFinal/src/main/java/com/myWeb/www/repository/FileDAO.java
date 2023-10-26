@@ -13,6 +13,10 @@ public interface FileDAO {
 
 	int fileRemove(String uuid);
 
+	int removeAllFile(int bno);
+
+	List<fileVO> selectListAllFiles();
+
 	
 
 }

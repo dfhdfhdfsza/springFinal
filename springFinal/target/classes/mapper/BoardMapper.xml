@@ -11,7 +11,9 @@
 		select * from board order by bno desc
 	</select>
 	<select id="getPageList" parameterType="com.myWeb.www.domain.pagingVO" resultType="com.myWeb.www.domain.boardVO">
-		select * from board 
+		select * from board
+		left join (select bno,count(bno)cmt_qty from comment group by bno)c using(bno)
+		left join (select bno,count(bno)has_file from file group by bno)f using(bno)
 		<include refid="search"></include>
 		order by bno desc limit #{pageStart},#{qty}
 	</select>

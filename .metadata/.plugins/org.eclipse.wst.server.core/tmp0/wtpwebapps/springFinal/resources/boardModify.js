@@ -1,13 +1,21 @@
-document.getElementById('fileMod').addEventListener('click',()=>{
-    let uuid=document.getElementById('fileMod').dataset.uuid;
+document.addEventListener('click',(e)=>{
+    let li=e.target.closest('li');
+    let uuid=li.dataset.uuid;
     console.log(uuid);
-
-    FileModifyDelete(uuid).then(result=>{
-        if(result==1){
-            window.location.reload()
-        }
-    })
+    if(e.target.classList.contains('fileMod'))
+    
+    {
+        FileModifyDelete(uuid).then(result=>{
+            console.log(result);
+            if(result==1){
+                alert('삭제 성공');
+                e.target.closest('li').remove();
+            }
+        })
+    }
 })
+
+
 
 async function FileModifyDelete(uuid)
 {
@@ -17,7 +25,7 @@ async function FileModifyDelete(uuid)
             method:'delete'
         };
         const resp=await fetch(url,config);
-        const result=await resp.text;
+        const result=await resp.text();
         return result;
     } catch (error) {
         console.log(error);
@@ -48,7 +56,7 @@ function fileValidation(fileName,fileSize)
 //객체에 변화가 생겼을때
 document.addEventListener('change',(e)=>{
     if(e.target.id=='files'){
-        
+        document.getElementById('regBtn').disabled=false;
         //input file element에 저장된 file의 정보를 가져오는 property
         const fileObj = document.getElementById('files').files;
         console.log(fileObj);
@@ -68,13 +76,15 @@ document.addEventListener('change',(e)=>{
             isOk*=validResult;
             ul+=`<li class="list-group-item">`;
             ul+=`<div class="mb-3">`;
-            ul+=`${validResult ? '<div class="mb-3">업로드 가능</div>':'<div class="mb-3 text-danger">업로드 가능</div>'}`;
+            ul+=`${validResult ? '<div class="mb-3">업로드 가능</div>':'<div class="mb-3 text-danger">업로드 불가능</div>'}`;
             ul+=`${file.name}</div>`;
             ul+=`<span class="badge text-bg-${validResult ? 'success':'danger'}">${file.size}Bytes</span></li>`;
         }
         ul+=`</ul>`;
         div.innerHTML=ul;
-
+        if(isOk==0){
+            document.getElementById('regBtn').disabled=true;
+        }
     
     }
 })

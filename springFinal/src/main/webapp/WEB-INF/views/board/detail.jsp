@@ -17,42 +17,43 @@
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../common/nav.jsp"></jsp:include>
+	
 	<table class="table table-hover">
 		<tr>
 			<th>bno</th>
-			<td>${bvo.bno}</td>
+			<td>${bdto.bvo.bno}</td>
 		</tr>
 		<tr>
 			<th>title</th>
-			<td>${bvo.title}</td>
+			<td>${bdto.bvo.title}</td>
 		</tr>
 		<tr>
 			<th>content</th>
-			<td>${bvo.content}</td>
+			<td>${bdto.bvo.content}</td>
 		</tr>
 		<tr>
 			<th>writer</th>
-			<td>${bvo.writer}</td>
+			<td>${bdto.bvo.writer}</td>
 		</tr>
 		<tr>
 			<th>registerDate</th>
-			<td>${bvo.regAt}</td>
+			<td>${bdto.bvo.regAt}</td>
 		</tr>
 		<tr>
 			<th>ModifyDate</th>
-			<td>${bvo.modAt}</td>
+			<td>${bdto.bvo.modAt}</td>
 		</tr>
 		<tr>
 			<th>read_count</th>
-			<td>${bvo.readCount }</td>
+			<td>${bdto.bvo.readCount }</td>
 		</tr>
 		<tr>
 			<th>cmtQty</th>
-			<td>${bvo.cmtQty }</td>
+			<td>${bdto.bvo.cmtQty }</td>
 		</tr>
 		<tr>
 			<th>hasFile</th>
-			<td>${bvo.hasFile }</td>
+			<td>${bdto.bvo.hasFile }</td>
 		</tr>
 	</table>
 	
@@ -132,7 +133,7 @@
 	</div>
 
 	<script type="text/javascript">
-		let bnoVal = `<c:out value="${bvo.bno}"/>`;
+		let bnoVal = `<c:out value="${bdto.bvo.bno}"/>`;
 		console.log(bnoVal);
 	</script>
 	<script type="text/javascript" src="/resources/boardComment.js"></script>

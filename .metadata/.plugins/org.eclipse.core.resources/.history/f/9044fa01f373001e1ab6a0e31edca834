@@ -1,0 +1,9 @@
+package com.myWeb.www.handler;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class FileSweeper 
+{
+	
+}
