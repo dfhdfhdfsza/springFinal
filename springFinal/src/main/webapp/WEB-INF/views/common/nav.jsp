@@ -21,6 +21,9 @@
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/register">Board REG</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/list">Board List</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/register">Member Register</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/login">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/logout">Logout</a></li>
 				</ul>
 				<form class="d-flex" role="search">
 					<input class="form-control me-2" type="search" placeholder="Search"

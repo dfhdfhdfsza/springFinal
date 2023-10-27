@@ -1,5 +1,0 @@
-package com.myWeb.www.service;
-
-public interface CommentService {
-
-}

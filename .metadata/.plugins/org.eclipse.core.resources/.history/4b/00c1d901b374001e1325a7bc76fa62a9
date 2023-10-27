@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../common/nav.jsp"></jsp:include>
+	<!-- email,pwd,nick_name -->
+	<div class="container">
+		<div class="mb-3">
+			<label for="exampleFormControlInput1" class="form-label">Title</label>
+			<input type="text" class="form-control" id="exampleFormControlInput1"
+				placeholder="title" name="title">
+		</div>
+		<div class="mb-3">
+			<label for="exampleFormControlInput1" class="form-label">Writer</label>
+			<input type="text" class="form-control" id="exampleFormControlInput1"
+				placeholder="writer" name="writer">
+		</div>
+	</div>
+
+</body>
+</html>

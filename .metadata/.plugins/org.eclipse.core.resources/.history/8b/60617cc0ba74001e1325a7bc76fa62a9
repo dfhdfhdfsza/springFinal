@@ -1,0 +1,21 @@
+package com.myWeb.www.service;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.myWeb.www.repository.MemberDAO;
+import com.myWeb.www.security.memberVO;
+
+@Service
+public class MemberServiceImpl implements MemberService
+{
+	@Inject
+	private MemberDAO mdao;
+
+	@Override
+	public int register(memberVO mvo) {
+		return mdao.register(mvo)
+	}
+
+}

@@ -28,8 +28,7 @@ public class FileSweeper
 	
 	//초 분 시 일 월 요일 년도(연도만 생략가능)
 	//*->상관없음
-	@Scheduled(cron="0 21 21 * * *")
-	public void fileSweeper()
+	@Scheduled(cron="0 0 21 * * *")	public void fileSweeper()
 	{
 		log.info(">> FileSweeper Running Start: {}>"+LocalDateTime.now());
 		

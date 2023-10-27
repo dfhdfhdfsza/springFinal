@@ -1,9 +1,0 @@
-package com.myWeb.www.repository;
-
-import com.myWeb.www.domain.commentVO;
-
-public interface CommentDAO {
-
-	void postComment(commentVO cvo);
-
-}

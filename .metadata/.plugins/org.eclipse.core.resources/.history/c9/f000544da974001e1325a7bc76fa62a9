@@ -1,0 +1,5 @@
+package com.myWeb.www.controller;
+
+public class MemberController {
+
+}

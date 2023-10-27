@@ -1,0 +1,32 @@
+package com.myWeb.www.controller;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.myWeb.www.security.memberVO;
+import com.myWeb.www.service.MemberService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RequestMapping("/member/**")
+@Controller
+public class MemberController 
+{
+	@Inject
+	private MemberService msv;
+	
+	@GetMapping("/register")
+	public void register(){}
+	
+	@PostMapping("/register")
+	public String register(memberVO mvo)
+	{
+		return "index";
+	}
+
+}
