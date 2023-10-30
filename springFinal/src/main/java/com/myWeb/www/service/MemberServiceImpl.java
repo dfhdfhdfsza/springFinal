@@ -22,4 +22,9 @@ public class MemberServiceImpl implements MemberService
 		return mdao.insertAuthInit(mvo.getEmail());
 	}
 
+	@Override
+	public boolean updateLastLogin(String authEmail) {
+		return mdao.updateLastLogin(authEmail)>0 ? true:false;
+	}
+
 }

@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		// 승인요청
 		http.authorizeRequests().antMatchers("/member/list").hasRole("ADMIN")
-				.antMatchers("/", "/board/list", "/board/detail", "/resources/**", "/member/register", "/member/login").permitAll()
+				.antMatchers("/", "/board/list", "/board/detail", "/resources/**","/upload/**", "/member/register", "/member/login","/comment/**","/member/detail").permitAll()
 				.anyRequest().authenticated(); // 인증된 사용자만 처리
 		
 		//커스텀 로그인 페이지를 구성
@@ -70,11 +70,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.loginPage("/member/login")
 		.successHandler(authSuccessHandler()).failureHandler(authFailureHandler());
 		
-		//로그아웃 페이지
+		//로그아웃 페이지 
+		// /member/logout을 달고 있는 postmapping이 있으면 대신 처리
 		http.logout().logoutUrl("/member/logout")
-		.invalidateHttpSession(true)
-		.deleteCookies("JSESSOINID")
-		.logoutSuccessUrl("/");
+		.invalidateHttpSession(true)	//세션끊음
+		.deleteCookies("JSESSOINID")	//쿠키삭제
+		.logoutSuccessUrl("/");			//로그아웃완료하면 index로
 		
 		
 	}

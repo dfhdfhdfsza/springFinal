@@ -10,5 +10,14 @@
 <insert id="insertAuthInit">
 	insert into auth_member	values(#{email},'ROLE_USER')
 </insert>
+<select id="selectEmail" resultType="com.myWeb.www.security.memberVO">
+	select * from member where email=#{email}
+</select>
+<select id="selectAuths" resultType="com.myWeb.www.security.authVO">
+	select * from auth_member where email=#{email}
+</select>
+<update id="updateLastLogin">
+	update member set last_login=now() where email=#{email}
+</update>
 
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,9 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../common/nav.jsp"></jsp:include>
 	<!-- email,pwd,nick_name -->
+	
 	<h1>회원가입</h1>
+	
 	<form action="/member/register" method="post">
 		<div class="container">
 			<div class="mb-3">

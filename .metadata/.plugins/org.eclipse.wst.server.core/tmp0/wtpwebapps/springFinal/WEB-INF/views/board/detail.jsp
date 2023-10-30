@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,6 @@
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../common/nav.jsp"></jsp:include>
-	
 	<table class="table table-hover">
 		<tr>
 			<th>bno</th>
@@ -78,12 +78,14 @@
 	<!-- comment 라인 -->
 	<div>
 		<!-- 댓글 등록 라인 -->
+		<sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal.mvo.email" var="authEmail"/>
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="cmtWriter">Writer</span> <input
-				type="text" class="form-control" placeholder="Comment Content"
-				id="cmtText">
+			<span class="input-group-text" id="cmtWriter" >${authEmail}</span> 
+			<input type="text" class="form-control" placeholder="Comment Content" id="cmtText">
 			<button class="btn btn-primary" type="button" id="cmtPostBtn">POST</button>
 		</div>
+		</sec:authorize>
 		<!-- 댓글 표시 라인 -->
 		<table class="table table-bordered" id="tb" style="text-align: center">
 			<thead>
