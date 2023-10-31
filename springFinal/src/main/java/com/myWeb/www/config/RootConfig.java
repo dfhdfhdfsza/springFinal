@@ -24,7 +24,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @MapperScan(basePackages = {"com.myWeb.www.repository"})
-@ComponentScan(basePackages = {"com.myWeb.www.service","com.myWeb.www.handler"})
+@ComponentScan(basePackages = {"com.myWeb.www.service","com.myWeb.www.handler","com.myWeb.www.exception"})
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 @EnableScheduling

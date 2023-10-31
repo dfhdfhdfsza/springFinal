@@ -7,25 +7,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1" style="text-align: center" class="table">
-		<thead>
-			<tr>
-				<th>email</th>
-				<th>pwd</th>
-				<th>닉네임</th>
-				<th>가입일</th>
-				<th>마지막 로그인한 날</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>${principal.mvo.email }</td>
-				<td>${principal.mvo.pwd }</td>
-				<td>${principal.mvo.nickName }</td>
-				<td>${principal.mvo.regAt }</td>
-				<td>${principal.mvo.lastLogin }</td>
-			</tr>
-		</tbody>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../common/nav.jsp"></jsp:include>
+	<h1>Member Detail</h1>
+	<table class="table table-hover">
+		<tr>
+			<th>email</th>
+			<td>${mvo.email }</td>
+		</tr>
+		<tr>
+			<th>pwd</th>
+			<td>${mvo.pwd }</td>
+		</tr>
+		<tr>
+			<th>닉네임</th>
+			<td>${mvo.nickName }</td>
+		</tr>
+		<tr>
+			<th>가입일</th>
+			<td>${mvo.regAt }</td>
+		</tr>
+		<tr>
+			<th>마지막 로그인한 날</th>
+			<td>${mvo.lastLogin}</td>
+		</tr>
 	</table>
+	<a href="/member/modify?email=${mvo.email}"><button>md</button></a>
 </body>
 </html>

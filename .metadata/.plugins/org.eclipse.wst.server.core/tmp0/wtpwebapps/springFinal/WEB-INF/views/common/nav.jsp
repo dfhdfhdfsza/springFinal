@@ -38,6 +38,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/member/list">ADMIN > ${authNick}${authEmail}</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/member/detail?email=${authEmail}">${authNick}${authEmail}[Detail]</a>
+							</li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item">

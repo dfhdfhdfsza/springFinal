@@ -1,0 +1,9 @@
+package com.myWeb.www.exception;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+@ControllerAdvice //exception 핸들러를 사용할수있는 어노테이션
+public class CommonExceptionAdvice 
+{
+
+}

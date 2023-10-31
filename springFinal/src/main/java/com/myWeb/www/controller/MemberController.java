@@ -1,10 +1,13 @@
 package com.myWeb.www.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,10 +54,32 @@ public class MemberController
 		return "redirect:/member/login";
 	}
 	@GetMapping("/detail")
-	public void detail(String email)
+	public void detail(String email,Model m)
 	{
+		memberVO mvo=msv.getDetail(email);
 		
+		m.addAttribute("mvo", mvo);
 		 
+	}
+	@GetMapping("/list")
+	public void list(Model m)
+	{
+		List<memberVO>list=msv.getList();
+		m.addAttribute("list", list);
+	}
+	@GetMapping("/modify")
+	public void modify(Model m,String email)
+	{
+		memberVO mvo=msv.getDetail(email);
+		m.addAttribute("mvo", mvo);
+	}
+	@PostMapping("/modify")
+	public String modify(memberVO mvo)
+	{
+		mvo.setPwd(bcEncoder.encode(mvo.getPwd()));
+		int isOk=msv.modify(mvo);
+		log.info((isOk>0)? "멤버수정 성공!":"멤버수정 실패!");
+		return "index";
 	}
 
 }

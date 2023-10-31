@@ -19,5 +19,14 @@
 <update id="updateLastLogin">
 	update member set last_login=now() where email=#{email}
 </update>
+<select id="getDetail" resultType="com.myWeb.www.security.memberVO">
+	select * from member where email=#{email}
+</select>
+<select id="getList" resultType="com.myWeb.www.security.memberVO">
+	select * from member;
+</select>
+<update id="memberModify">
+	update member set pwd=#{pwd},nick_name=#{nickName} where email=#{email}
+</update>
 
 </mapper>

@@ -1,0 +1,5 @@
+package com.myWeb.www.exception;
+
+public class CommonExceptionAdvice {
+
+}
